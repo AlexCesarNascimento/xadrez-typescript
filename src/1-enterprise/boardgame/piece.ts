@@ -1,13 +1,14 @@
 import { Position } from "./position";
-import { Board } from "./Board";
+import { Board } from "./board";
+import {ChessMatch} from "../../2-application/useCase/chess-match";
 
 export class Piece {
 
-    protected position: Position
+    private position: Position | null
     private _board: Board
 
-    constructor(board: Board) {
-        this._board = board;
+    constructor(board: { rows: number , columns: number }) {
+        this._board = this.board;
         this.position = null
     }
 
@@ -15,3 +16,4 @@ export class Piece {
         return this._board;
     }
 }
+
