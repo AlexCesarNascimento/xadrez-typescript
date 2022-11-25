@@ -4,10 +4,10 @@ import { Board } from "../../boardgame/board";
 
 export class ChessPiece extends Piece {
 
-    private readonly _color: ColorEnum
+    // private readonly _color: ColorEnum
 
-    constructor(board: Board, color?: ColorEnum) {
+    constructor(board: Board) {
         super(board);
-        this._color = color;
+        // this._color = color;
     }
 }

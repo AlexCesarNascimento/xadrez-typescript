@@ -1,13 +1,13 @@
 import { Position } from "./position";
 import { Board } from "./board";
-import {ChessMatch} from "../../2-application/useCase/chess-match";
+
 
 export class Piece {
 
-    private position: Position | null
+    protected position: Position | null // é uma posição de matriz, ainda não é a posição do xadrez
     private _board: Board
 
-    constructor(board: { rows: number , columns: number }) {
+    constructor(board: Board) {
         this._board = this.board;
         this.position = null
     }

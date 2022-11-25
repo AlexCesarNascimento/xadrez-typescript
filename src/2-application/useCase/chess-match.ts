@@ -1,28 +1,25 @@
 import {Board} from "../../1-enterprise/boardgame/board";
 import {ChessPiece} from "../../1-enterprise/entities/chess/chess-piece";
-import {Piece} from "../../1-enterprise/boardgame/piece";
 
-// noinspection TypeScriptValidateTypes
+type StringOrNumber = string | number | string[][] | number[][] | null
 export class ChessMatch {
-    board: Board
-    constructor() {
-        this.board = new Board(8, 8 );
-    }
+    private _board: Board
 
-    getPieces() {
-        let matriz: ChessPiece[][];
-        matriz = new Board(this.board.rows, this.board.columns);
-        for (let i=0; i<this.board.rows; i++) {
-            for (let j=0; j<this.board.columns; j++) {
-                // @ts-ignore
-                matriz[i][j] = this.board.pieces({row: i, column: j})
+    things: StringOrNumber[][];
+    constructor() {
+        this._board = new Board(8, 8);
+        this.things = [];
+
+        for (let i: number = 0; i < 8; i++) {
+            this.things[i] = [];
+            for (let j: number = 0; j < 8; j++) {
+                this.things[i][j] = this._board.piece(i, j) as unknown as StringOrNumber
             }
         }
-        return matriz
     }
 
+    getPieces():StringOrNumber[][] {
+        return this.things
+    }
 }
-let CM: ChessMatch;
-CM = new ChessMatch
 
-CM.getPieces()

@@ -1,9 +1,7 @@
-import { Position } from "./1-enterprise/boardgame/position";
-import { Board } from "./1-enterprise/boardgame/board";
+
 import {ChessMatch} from "./2-application/useCase/chess-match";
+import {UserInterface} from "./userInterface";
 
-
-
-let b: Board;
-b = new Board(8, 8);
-console.log(b)
+let chessMatch: ChessMatch;
+chessMatch = new ChessMatch();
+UserInterface.printBoard(chessMatch.getPieces())
