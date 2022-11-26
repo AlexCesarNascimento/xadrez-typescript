@@ -1,19 +1,20 @@
 import { Piece } from "./piece";
-
+import {Position} from "./position";
+interface PositionInterface {row: number, column: number}
 type StringOrNumber = string | number | string[][] | number[][] | null | string[]
 export class Board {
     private _rows: number
     private _columns: number
-    private pieces: string[][]
+    pieces: string[][]
 
     constructor(rows: number, columns: number) {
         this._rows = rows;
         this._columns = columns;
         this.pieces = []
 
-        for(let i: number = 0; i < this._rows; i++) {
+        for (let i: number = 0; i < this._rows; i++) {
             this.pieces[i] = [];
-            for(let j: number = 0; j< this._columns; j++) {
+            for (let j: number = 0; j < this._columns; j++) {
                 this.pieces[i][j] = '-';
             }
         }
@@ -32,9 +33,11 @@ export class Board {
         this._columns = value;
     }
 
-    piece( row: number, column: number): StringOrNumber { //retorna a matriz pieces na linha row e na coluna column
+    getPiece( row: number, column: number): StringOrNumber {
         return this.pieces[row][column]
     }
+
+    placePiece(piece: Piece, position: Position): void {
+        this.pieces[position.row][position.column] =  piece.toString()
+    }
 }
-
-
