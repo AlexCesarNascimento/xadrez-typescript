@@ -1,5 +1,5 @@
 import { Piece } from "../boardgame/piece";
-import {ColorEnum} from "../../enum/color.enum";
+import {ColorEnum} from "../../../shared/enum/color.enum";
 import { Board } from "../boardgame/board";
 
 export class ChessPiece extends Piece {

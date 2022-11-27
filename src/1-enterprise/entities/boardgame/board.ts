@@ -1,6 +1,7 @@
 import { Piece } from "./piece";
 import {Position} from "./position";
 import {BoardError} from "./error/board-error";
+import {ChessPosition} from "../chess/chess-position";
 interface PositionInterface {row: number, column: number}
 type StringOrNumber = string | number | string[][] | number[][] | null | string[]
 export class Board {
