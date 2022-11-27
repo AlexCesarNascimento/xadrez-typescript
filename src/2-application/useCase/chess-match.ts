@@ -18,7 +18,8 @@ export class ChessMatch {
         for (let i: number = 0; i < 8; i++) {
             this.things[i] = [];
             for (let j: number = 0; j < 8; j++) {
-                this.things[i][j] = this._board.getPiece(i, j) as unknown as StringOrNumber
+                let position = { row: i, column: j }
+                this.things[i][j] = this._board.getPiece(position as Position) as unknown as StringOrNumber
             }
         }
     }

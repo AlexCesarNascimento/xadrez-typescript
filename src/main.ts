@@ -6,4 +6,3 @@ let chessMatch: ChessMatch;
 chessMatch = new ChessMatch();
 UserInterface.printBoard(chessMatch.getPieces())
 
-console.log('&#9822;', '\\265E', 'U+265E')
