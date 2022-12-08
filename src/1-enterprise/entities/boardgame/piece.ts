@@ -4,16 +4,15 @@ import { Board } from "./board";
 
 export class Piece {
 
-    position: Position | null // é uma posição de matriz, ainda não é a posição do xadrez
+    position: Position | null
     private _board: Board
 
     constructor(board: Board) {
-        this._board = this.board;
+        this._board = board
         this.position = null
     }
 
     protected get board(): Board {
-        return this._board;
+        return this._board
     }
 }
-

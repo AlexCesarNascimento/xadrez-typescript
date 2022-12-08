@@ -1,13 +1,11 @@
 import { Piece } from "./piece";
 import {Position} from "./position";
 import {BoardError} from "./error/board-error";
-import {ChessPosition} from "../chess/chess-position";
-interface PositionInterface {row: number, column: number}
-type StringOrNumber = string | number | string[][] | number[][] | null | string[]
+
 export class Board {
     private _rows: number
     private _columns: number
-    pieces: string[][]
+    pieces: any[][]
 
     constructor(rows: number, columns: number) {
         if(rows < 1 || columns < 1) {
@@ -18,9 +16,9 @@ export class Board {
         this.pieces = []
 
         for (let i: number = 0; i < this._rows; i++) {
-            this.pieces[i] = [];
+            this.pieces[i] = []
             for (let j: number = 0; j < this._columns; j++) {
-                this.pieces[i][j] = '-';
+                this.pieces[i][j] = null
             }
         }
     }
@@ -33,19 +31,33 @@ export class Board {
         return this._columns;
     }
 
-
-    getPiece(position: Position): StringOrNumber {
+    getPiece(position: Position): Piece | null {
         if (!this.positionExists(position)){
             throw new BoardError('Position not on the board')
         }
-        return this.pieces[position.row][position.column]
+
+        return  this.pieces[position.row][position.column]
     }
 
-    placePiece(piece: Piece, position: Position): void {
+    removePiece(position: Position): Piece | null{
+        if(!this.positionExists(position)){
+            throw new BoardError('Position not on the board')
+        }
+        if(this.getPiece(position) == null) {
+            return null
+        }
+        let aux: Piece = this.getPiece(position) as Piece
+        // aux.position.row = null
+        // aux.position.column = null
+        this.pieces[position.row][position.column] = null
+        return aux
+    }
+
+    placePiece(piece: any | null, position: Position): void {
         if(this.thereIsAPiece(position)){
             throw new BoardError('There is already a piece on position '+ position)
         }
-        this.pieces[position.row][position.column] =  piece.toString()
+        this.pieces[position.row][position.column] =  piece
     }
 
     positionExists(position: Position): boolean{
@@ -59,6 +71,6 @@ export class Board {
         if (!this.positionExists(position)){
             throw new BoardError('Position not on the board')
         }
-        return this.getPiece(position) != '-';
+        return this.getPiece(position) != null
     }
 }
